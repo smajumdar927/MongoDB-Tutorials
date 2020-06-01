@@ -6,20 +6,27 @@ mogoose.connect('mongodb://localhost:27017/fruitsDB', {
 });
 
 const fruitSchema = new mogoose.Schema({
-	name: String,
-	score: Number,
+	name: {
+        type: String,
+        required: [true, "Please specify fruit name"]
+    },
+	score: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
 	review: String,
 });
 
 const Fruit = mogoose.model('Fruit', fruitSchema);
 
-// const fruit = new Fruit({
-//     name: 'Apple',
-//     score: 8,
-//     review: 'A great fruit'
-// })
+const fruit = new Fruit({
+    name: 'Strawberry',
+    score: 8,
+    review: 'A great fruit'
+})
 
-// fruit.save()
+fruit.save()
 
 const personSchema = new mogoose.Schema({
 	name: String,
@@ -35,23 +42,23 @@ const person = new Person({
 	address: 'New York',
 });
 
-person.save();
+// person.save();
 
-const mango = new Fruit({
-	name: 'Mango',
-	score: 9,
-	review: 'sweet and sour',
-});
-const orange = new Fruit({
-	name: 'Orange',
-	score: 4,
-	review: 'Sour',
-});
-const banana = new Fruit({
-	name: 'Banana',
-	score: 5,
-	review: 'Ripe',
-});
+// const mango = new Fruit({
+// 	name: 'Mango',
+// 	score: 9,
+// 	review: 'sweet and sour',
+// });
+// const orange = new Fruit({
+// 	name: 'Orange',
+// 	score: 4,
+// 	review: 'Sour',
+// });
+// const banana = new Fruit({
+// 	name: 'Banana',
+// 	score: 5,
+// 	review: 'Ripe',
+// });
 // Fruit.insertMany([mango,orange,banana], function(err){
 //     if(err){
 //         console.log(err)
